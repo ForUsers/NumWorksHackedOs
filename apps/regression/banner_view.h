@@ -1,0 +1,35 @@
+#ifndef REGRESSION_BANNER_VIEW_H
+#define REGRESSION_BANNER_VIEW_H
+
+#include <escher.h>
+#include "../shared/banner_view.h"
+
+namespace Regression {
+
+class BannerView : public Shared::BannerView {
+public:
+  BannerView();
+  int numberOfTextviews() const { return k_numberOfTextViews; }
+  KDText::FontSize fontSize() const { return k_fontSize; }
+private:
+  static constexpr KDText::FontSize k_fontSize = KDText::FontSize::Small;
+  static constexpr KDColor k_textColor = KDColorBlack;
+  static constexpr KDColor k_backgroundColor = Palette::GreyMiddle;
+  static constexpr int k_numberOfTextViews = 9;
+  int numberOfSubviews() const override;
+  TextView * textViewAtIndex(int i) const override;
+  MessageTextView * messageTextViewAtIndex(int i) const override;
+  BufferTextView m_dotNameView;
+  BufferTextView m_xView;
+  BufferTextView m_yView;
+  MessageTextView m_regressionTypeView;
+  BufferTextView m_subText1;
+  BufferTextView m_subText2;
+  BufferTextView m_subText3;
+  BufferTextView m_subText4;
+  BufferTextView m_subText5;
+};
+
+}
+
+#endif
